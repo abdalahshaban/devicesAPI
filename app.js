@@ -38,3 +38,5 @@ const server = require('http').createServer(app);
 server.listen(app.get('port'), function () {
     console.log(`running on port : ${app.get('port')}`);
 });
+
+module.exports = server;
