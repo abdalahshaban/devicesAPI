@@ -25,6 +25,7 @@ Devices requires [Node.js](https://nodejs.org/) v8+ to run.
 
 Install the dependencies and devDependencies and start the server.
 ```sh
+$ git clone https://github.com/abdalahshaban/devicesAPI.git
 $ cd zewailcity
 $ npm install -d
 $ npm run start or node app.js
