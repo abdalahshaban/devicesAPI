@@ -37,7 +37,7 @@ $ npm install
 $ npm run test
 ```
 
-for API navigator
+for API documentation
 ```sh
 $ npm run start
 then
