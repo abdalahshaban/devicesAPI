@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Config = require('./config');
 const verifyToken = require('./middlewares/verifyToken')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./config/swagger.json')
 const { userAPI } = require('./components/user');
 const { deviceAPI } = require('./components/device');
 
@@ -21,6 +23,12 @@ app.use(cors());
 // body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//swagger
+var customSwaggerOptions = {
+    explorer: true,
+}
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, customSwaggerOptions))
 
 // set port
 app.set('port', PORT);

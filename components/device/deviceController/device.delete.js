@@ -14,7 +14,7 @@ async function deleteDevice(req, res, next) {
         console.log(device, 'device after delete');
         await User.updateOne({ _id: req.userData._id }, { $pull: { devices: deviceId } })
 
-        return res.status(200).json({ message: 'Device Deleted Successfully', });
+        return res.status(200).json({ message: 'Devices Deleted Successfully', device });
     } catch (error) {
         res.status(500).send({ message: 'Internal server error' });
     }

@@ -6,7 +6,7 @@ const app = require('../../app');
 
 let deviceId = "5f00f48ecbc80937b0e7d313"
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjAxMDRiMDhmMGUwZDU4ODQxNjdkMzMiLCJpYXQiOjE1OTM5MDIzMDgsImV4cCI6MTU5MzkwNTkwOH0.fVjHm7MfRDc80Cyp1ikQaooxtScMpdbyCU11QNJgVss"
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjAwZjQ2OWNiYzgwOTM3YjBlN2QzMTEiLCJpYXQiOjE1OTM5MTk0NDgsImV4cCI6MTU5MzkyMzA0OH0.1wPDiYyG5nAqJn5uEn_ZymDa_EoFtJfQasm5V2Z7m6Y"
 
 describe('testing get device info', () => {
 
@@ -16,11 +16,8 @@ describe('testing get device info', () => {
             .set({ authorization: token })
             .then((response) => {
                 expect(response.status).to.equal(200);
-                expect(response.body).to.be.an('object')
-                expect(response.body).to.have.property('_id').length.greaterThan(0)
-                expect(response.body).to.have.property('name').length.greaterThan(0)
-                expect(response.body).to.have.property('brand').length.greaterThan(0)
-                expect(response.body).to.have.property('description').length.greaterThan(0)
+                expect(response.body).to.have.property('message').to.equal('Get Device Info Successfully');
+                expect(response.body).to.have.property('device');
             });
     });
 

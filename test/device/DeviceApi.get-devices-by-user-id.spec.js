@@ -4,7 +4,7 @@ require('mocha');
 const request = require('supertest');
 const app = require('../../app');
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjAxMDRiMDhmMGUwZDU4ODQxNjdkMzMiLCJpYXQiOjE1OTM5MDIzMDgsImV4cCI6MTU5MzkwNTkwOH0.fVjHm7MfRDc80Cyp1ikQaooxtScMpdbyCU11QNJgVss"
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjAwZjQ2OWNiYzgwOTM3YjBlN2QzMTEiLCJpYXQiOjE1OTM5MTk0NDgsImV4cCI6MTU5MzkyMzA0OH0.1wPDiYyG5nAqJn5uEn_ZymDa_EoFtJfQasm5V2Z7m6Y"
 
 describe('testing get all devices by user id', () => {
 
@@ -14,7 +14,8 @@ describe('testing get all devices by user id', () => {
             .set({ authorization: token })
             .then((response) => {
                 expect(response.status).to.equal(200);
-                expect(response.body).to.be.an('array')
+                expect(response.body).to.have.property('message').to.equal('get All Devices Successfully');
+                expect(response.body).to.have.property('devices');
             });
     });
 });
