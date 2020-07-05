@@ -12,7 +12,7 @@ async function addDevice(req, res, next) {
         device = await Device.create(value);
         await User.updateOne({ _id: req.userData._id }, { $push: { devices: device._id } });
         return res.status(200).json({
-            message: 'Devices add Successfully',
+            message: 'Device add Successfully',
             device
         });
     } catch (error) {

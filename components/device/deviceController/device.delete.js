@@ -5,7 +5,7 @@ const { User } = require('../../user');
 async function deleteDevice(req, res, next) {
     try {
         const { deviceId } = req.params;
-        if (!mongoose.Types.ObjectId.isValid(deviceId)) return res.status(400).send({ message: 'Invalid place' });
+        if (!mongoose.Types.ObjectId.isValid(deviceId)) return res.status(400).send({ message: 'Invalid Device' });
 
         console.log(deviceId, 'deviceId');
 
