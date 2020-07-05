@@ -12,17 +12,17 @@ const userData = {
 
 
 describe('testing  user signup', () => {
-    // it('signup ok', () => {
-    //     return request('localhost:3000/api')
-    //         .post('/user/signup')
-    //         .send(userData)
-    //         .then((response) => {
-    //             expect(response.status).to.equal(201);
-    //             expect(response.body).to.have.property('token');
-    //             expect(response.body).to.have.property('userData');
+    it('signup ok', () => {
+        return request('localhost:3000/api')
+            .post('/user/signup')
+            .send(userData)
+            .then((response) => {
+                expect(response.status).to.equal(201);
+                expect(response.body).to.have.property('token');
+                expect(response.body).to.have.property('userData');
 
-    //         });
-    // });
+            });
+    });
 
     it('signup required email', () => {
         return request('localhost:3000/api')
