@@ -7,7 +7,7 @@ async function getDevicesByUserId(req, res, next) {
 
         const devices = await Device.find({ addedBy: req.userData._id });
 
-        return res.status(200).json(devices);
+        return res.status(200).json({ message: 'get All Devices Successfully', devices });
 
     } catch (error) {
         return res.status(500).json({ message: 'Internal server error' });

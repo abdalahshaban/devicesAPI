@@ -1,0 +1,421 @@
+{
+    "swagger": "2.0",
+    "title": "Devices Api Doc",
+    "description": "Swagger API Documentation For Devices API",
+    "contact": {
+        "name": "API Support",
+        "url": "https://github.com/abdalahshaban/devicesAPI",
+        "email": "abdalahshaban129@gmail.com"
+    },
+    "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0",
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "Devices",
+            "description": "API For Device"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "securityDefinitions": {
+        "jwt": {
+            "type": "apiKey",
+            "name": "authorization",
+            "in": "header"
+        }
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/user/signup": {
+            "post": {
+                "tags": [
+                    "Signup"
+                ],
+                "description": "Signup",
+                "parameters": [
+                    {
+                        "name": "Signup Data",
+                        "description": "Signup User",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/addUser"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "new User added",
+                        "schema": {
+                            "$ref": "#definitions/responseUser"
+                        }
+                    },
+                    "409": {
+                        "description": "Email already exists",
+                        "schema": {
+                            "$ref": "#definitions/invalidDevice"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "description": "login",
+                "parameters": [
+                    {
+                        "name": "login Data",
+                        "description": "login User",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/addUser"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "login User",
+                        "schema": {
+                            "$ref": "#definitions/responseUser"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid username or password",
+                        "schema": {
+                            "$ref": "#definitions/invalidDevice"
+                        }
+                    }
+                }
+            }
+        },
+        "/device/add-device": {
+            "post": {
+                "tags": [
+                    "Add Device"
+                ],
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "description": "Add new Device",
+                "parameters": [
+                    {
+                        "name": "Device",
+                        "description": "Device that we want create",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/addDevice"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "new device added",
+                        "schema": {
+                            "$ref": "#definitions/responseDevice"
+                        }
+                    }
+                }
+            }
+        },
+        "/device/edit-device/{deviceId}": {
+            "parameters": [
+                {
+                    "name": "deviceId",
+                    "in": "path",
+                    "description": "Id of The Device",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "put": {
+                "tags": [
+                    "edit Device"
+                ],
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "description": "edit Device",
+                "parameters": [
+                    {
+                        "name": "Device",
+                        "description": "Device that we want edit",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/editDevice"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Device edited successfully",
+                        "schema": {
+                            "$ref": "#definitions/responseDevice"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Device",
+                        "schema": {
+                            "$ref": "#definitions/invalidDevice"
+                        }
+                    }
+                }
+            }
+        },
+        "/device/delete-device/{deviceId}": {
+            "parameters": [
+                {
+                    "name": "deviceId",
+                    "in": "path",
+                    "description": "Id of The Device",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "delete": {
+                "tags": [
+                    "delete Device"
+                ],
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "description": "delete Device",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Devices Deleted Successfully",
+                        "schema": {
+                            "$ref": "#definitions/responseDevice"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Device",
+                        "schema": {
+                            "$ref": "#definitions/invalidDevice"
+                        }
+                    }
+                }
+            }
+        },
+        "/device/get-device-info/{deviceId}": {
+            "parameters": [
+                {
+                    "name": "deviceId",
+                    "in": "path",
+                    "description": "Id of The Device",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "tags": [
+                    "get Device Info"
+                ],
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "description": "Get Device Info",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Device Info Successfully",
+                        "schema": {
+                            "$ref": "#definitions/responseDevice"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Device",
+                        "schema": {
+                            "$ref": "#definitions/invalidDevice"
+                        }
+                    }
+                }
+            }
+        },
+        "/device/get-devices-by-user-id": {
+            "get": {
+                "tags": [
+                    "get All Devices Per User"
+                ],
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "description": "get All Devices",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get All Devices Successfully",
+                        "schema": {
+                            "$ref": "#definitions/responseDevice"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "addUser": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "responseUser": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "userData": {
+                    "type": "object",
+                    "properties": {
+                        "_id": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "devices": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "responseDevice": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "device": {
+                    "type": "object",
+                    "properties": {
+                        "_id": {
+                            "type": "string"
+                        },
+                        "brand": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "addedBy": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "addDevice": {
+            "required": [
+                "brand",
+                "name",
+                "description"
+            ],
+            "properties": {
+                "brand": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "editDevice": {
+            "required": [
+                "brand",
+                "name",
+                "description"
+            ],
+            "properties": {
+                "brand": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "invalidDevice": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "deviceInfo": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
